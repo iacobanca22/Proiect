@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harta Locuri de Parcare</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            const mapOptions = {
+                zoom: 14,
+                center: { lat: 44.4268, lng: 26.1025 }, // Centru București
+            };
+            const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+            // Marker pentru locuri de parcare (coordonate exemplu din baza de date)
+            const parkingSpots = [
+                { lat: 44.4280, lng: 26.1040, title: 'Loc de Parcare A' },
+                { lat: 44.4270, lng: 26.1050, title: 'Loc de Parcare B' },
+            ];
+
+            parkingSpots.forEach(spot => {
+                new google.maps.Marker({
+                    position: { lat: spot.lat, lng: spot.lng },
+                    map: map,
+                    title: spot.title,
+                });
+            });
+        }
+    </script>
+</body>
+</html>
